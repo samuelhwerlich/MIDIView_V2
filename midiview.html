@@ -18,6 +18,13 @@
 </head>
 
 <body>
+     <!-- Loader -->
+     <div id="loader">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- Conteúdo da Página -->
+    <div id="main-content" style="display: none;">
     <header>
         <h1>Projeto de Desenho Técnico Avançado</h1> <!-- Título principal adicionado -->
         <!-- Navegação com ícones -->
@@ -199,14 +206,29 @@
 
     </section>
     <footer>
-        <h1>Controlador MIDI virtualizado</h1> <!-- Título principal adicionado -->
+        <h1>Controlador MIDI Virtual</h1> <!-- Título principal adicionado -->
     </footer>
-
+</div>
     <!-- Navegação com ícones -->
 
     <!-- Scripts Principais -->
     <script src="./js/midi_service.js"></script>
     <script src="./js/midiview.js"></script>
+    <script>
+        // Controle do Loader
+        window.addEventListener("load", function () {
+            // Oculta o loader
+            const loader = document.getElementById("loader");
+            const mainContent = document.getElementById("main-content");
+
+            if (loader && mainContent) {
+                loader.style.display = "none";
+                mainContent.style.display = "block";
+            } else {
+                console.error("Loader ou Main Content não encontrado!");
+            }
+        });
+    </script>
 </body>
 
 </html>
