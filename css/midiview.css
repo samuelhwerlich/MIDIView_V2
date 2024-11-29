@@ -1,0 +1,492 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;700&display=swap");
+
+h1, h2, h3, h4, h5, h6 {
+	font-family: 'Poppins', sans-serif !important;
+	font-weight: 400;
+	margin-bottom: 30px;
+	line-height: 1.2;
+	text-align: center;
+	color: #242323;
+}
+
+/* Garantir que HTML e Body ocupem 100% da tela */
+html, body {
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	/* Remove rolagem */
+	font-family: 'Poppins', sans-serif;
+}
+
+/* Header */
+header {
+	text-align: center;
+	position: relative;
+	width: 100%;
+	z-index: 5;
+	/* Acima dos elementos de fundo */
+	padding: 10px 0;
+}
+
+nav {
+	display: flex;
+	justify-content: center;
+	gap: 40px;
+	padding: 10px 0;
+	background: none;
+	/* Sem fundo */
+}
+
+nav button {
+	background: none;
+	border: none;
+	cursor: pointer;
+	display: inline-flex;
+	flex-direction: column;
+	align-items: center;
+	color: #333;
+	font-size: 10px;
+	padding: 2px;
+}
+
+nav button i {
+	font-size: 28px;
+	margin-bottom: 2px;
+}
+
+nav button:hover {
+	color: #57a59a;
+	/* Cor ao passar o mouse */
+}
+
+nav button span {
+	font-family: 'Poppins', sans-serif;
+	font-size: 18px;
+	text-align: center;
+}
+
+/* Ajustes para responsividade do Navbar */
+@media (max-width: 1200px) {
+	nav button {
+		font-size: 12px;
+		/* Aumenta um pouco o tamanho do texto */
+	}
+}
+
+@media (max-width: 800px) {
+	nav {
+		gap: 20px;
+		/* Menor espaçamento entre os botões */
+	}
+
+	nav button {
+		font-size: 14px;
+		/* Aumenta o texto para ficar mais legível */
+	}
+}
+
+@media (max-width: 600px) {
+	nav {
+		flex-direction: column;
+		/* Organiza os itens da navbar verticalmente */
+		gap: 15px;
+	}
+
+	nav button {
+		font-size: 16px;
+		/* Tamanho maior para legibilidade */
+	}
+}
+
+/* Ajuste de Navbar para telas muito pequenas */
+@media (max-width: 400px) {
+	nav {
+		gap: 2px !important;
+		/* Menor espaçamento entre os botões */
+	}
+
+	nav button {
+		font-size: 12px !important;
+		/* Ajusta o texto para dispositivos muito pequenos */
+	}
+
+	nav button i {
+		font-size: 24px;
+		margin-bottom: 2px;
+	}
+
+	nav button span {
+		font-family: 'Poppins', sans-serif;
+		font-size: 14px;
+		text-align: center;
+	}
+}
+
+
+/* Centralizar o conteúdo principal */
+.center {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+	width: 100%;
+	height: 100%;
+}
+
+/* Contêiner fixo com escala padrão */
+.container {
+	position: relative;
+	width: 900px;
+	/* Base fixa */
+	height: 600px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	transform: scale(1);
+	/* Escala padrão */
+	transform-origin: center;
+}
+
+/* Escala proporcional para telas menores */
+@media (max-width: 1600px) {
+	.container {
+		transform: scale(0.7);
+	}
+}
+
+@media (max-width: 1400px) {
+	.container {
+		transform: scale(0.6);
+		margin-top: -140px;
+	}
+}
+
+@media (max-width: 1200px) {
+	.container {
+		transform: scale(0.5);
+	}
+}
+
+@media (max-width: 1000px) {
+	.container {
+		transform: scale(0.5);
+	}
+}
+
+@media (max-width: 800px) {
+	.container {
+		transform: scale(0.8);
+	}
+}
+
+@media (max-width: 600px) {
+	.container {
+		transform: scale(0.9);
+		margin-top: -140px;
+	}
+}
+
+@media (max-width: 400px) {
+	.container {
+		transform: scale(0.9);
+		margin-top: -200px !important;
+	}
+}
+
+@media (max-width: 375px) {
+	.container {
+		transform: scale(0.9);
+		margin-top: -220px !important;
+	}
+}
+
+/* Imagem de fundo */
+.base-image {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	object-fit: contain;
+	/* Garante que a imagem não distorça */
+	z-index: -1;
+	/* Abaixo de outros elementos */
+}
+
+/* Tampa de acrílico preto */
+/* Tampa de acrílico preto */
+.tampa {
+	position: absolute;
+	top: 14.7%;
+	left: 9.5%;
+	width: 80.5%;
+	height: 65%;
+	background: rgba(0, 0, 0, 0.5);
+	/* Fundo semi-transparente para efeito de vidro */
+	border: 2px solid rgba(255, 255, 255, 0.1);
+	/* Bordas claras para dar contraste */
+	border-radius: 15px;
+	box-shadow: 0px 4px 15px rgba(255, 255, 255, 0.1), 0px 0px 30px rgba(0, 0, 0, 0.8);
+	/* Efeito de reflexo e profundidade */
+	backdrop-filter: blur(6px);
+	/* Simula distorção de fundo como vidro */
+	-webkit-backdrop-filter: blur(6px);
+	/* Suporte para navegadores baseados em WebKit */
+	transform: perspective(2000px) rotateX(47deg) rotateY(0deg);
+	z-index: 2;
+	/* Tampa acima da imagem */
+}
+
+/* Furos nos cantos da tampa */
+.tampa .corner-hole {
+	position: absolute;
+	width: 6px;
+	height: 8px;
+	border-radius: 50%;
+	background: transparent;
+	border: 3px solid rgba(255, 255, 255, 0.5);
+	/* Cor do "furo" */
+	z-index: 3;
+}
+
+/* Furo no canto superior esquerdo */
+.tampa .corner-hole.top-left {
+	top: 16px;
+	left: 12px;
+}
+
+/* Furo no canto superior direito */
+.tampa .corner-hole.top-right {
+	top: 16px;
+	right: 12px;
+}
+
+/* Furo no canto inferior esquerdo */
+.tampa .corner-hole.bottom-left {
+	bottom: 16px;
+	left: 12px;
+}
+
+/* Furo no canto inferior direito */
+.tampa .corner-hole.bottom-right {
+	bottom: 16px;
+	right: 12px;
+}
+
+/* Garantir que a perspectiva seja mantida em telas pequenas */
+@media (max-width: 600px) {
+	.tampa {
+		position: absolute;
+		top: 34.7%;
+		left: 9.5%;
+		width: 79.9%;
+		height: 28%;
+		background: rgba(220, 220, 220, 0.3);
+		border: 2px solid rgba(150, 150, 150, 0.8);
+		border-radius: 6px;
+		box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+		transform: perspective(820px) rotateX(47deg) rotateY(0deg);
+		z-index: 2;
+		/* Tampa acima da imagem */
+	}
+
+	/* Furos nos cantos da tampa */
+	.tampa .corner-hole {
+		position: absolute;
+		width: 4px;
+		height: 6px;
+		border-radius: 50%;
+		background: transparent;
+		border: 2px solid rgba(255, 255, 255, 0.5);
+		/* Cor do "furo" */
+		z-index: 3;
+	}
+
+	/* Furo no canto superior esquerdo */
+	.tampa .corner-hole.top-left {
+		top: 12px;
+		left: 8px;
+	}
+
+	/* Furo no canto superior direito */
+	.tampa .corner-hole.top-right {
+		top: 12px;
+		right: 8px;
+	}
+
+	/* Furo no canto inferior esquerdo */
+	.tampa .corner-hole.bottom-left {
+		bottom: 12px;
+		left: 8px;
+	}
+
+	/* Furo no canto inferior direito */
+	.tampa .corner-hole.bottom-right {
+		bottom: 12px;
+		right: 8px;
+	}
+}
+
+@media (max-width: 400px) {
+	.tampa {
+		position: absolute;
+		top: 35.7%;
+		left: 9.5%;
+		width: 79.5%;
+		height: 26%;
+		background: rgba(220, 220, 220, 0.3);
+		border: 2px solid rgba(150, 150, 150, 0.8);
+		border-radius: 6px;
+		box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+		transform: perspective(820px) rotateX(47deg) rotateY(0deg);
+		z-index: 2;
+		/* Tampa acima da imagem */
+	}
+
+	/* Furos nos cantos da tampa */
+	.tampa .corner-hole {
+		position: absolute;
+		width: 2px;
+		height: 4px;
+		border-radius: 50%;
+		background: transparent;
+		border: 3px solid rgba(255, 255, 255, 0.5);
+		/* Cor do "furo" */
+		z-index: 3;
+	}
+
+	/* Furo no canto superior esquerdo */
+	.tampa .corner-hole.top-left {
+		top: 12px;
+		left: 8px;
+	}
+
+	/* Furo no canto superior direito */
+	.tampa .corner-hole.top-right {
+		top: 12px;
+		right: 8px;
+	}
+
+	/* Furo no canto inferior esquerdo */
+	.tampa .corner-hole.bottom-left {
+		bottom: 12px;
+		left: 8px;
+	}
+
+	/* Furo no canto inferior direito */
+	.tampa .corner-hole.bottom-right {
+		bottom: 12px;
+		right: 8px;
+	}
+}
+
+
+/* Reflexo cobrindo toda a tampa */
+.reflection {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: linear-gradient(to bottom, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0));
+	filter: blur(4px);
+	opacity: 0.5;
+	z-index: 1;
+}
+
+/* Botões */
+.buttons {
+	position: absolute;
+	top: -50.7%;
+	left: -10.5%;
+	width: 200%;
+	height: 200%;
+	z-index: 3;
+	/* Botões acima da tampa */
+}
+
+/* Base preta (roda deitada) */
+.btn-base {
+	fill: #353434;
+	/* Preto fosco */
+	stroke: #202020;
+	/* Borda preta */
+	stroke-width: 2;
+	filter: drop-shadow(2px 2px 6px rgba(51, 49, 49, 0.8));
+	text-shadow: 1px 1px pink, -1px -1px maroon;
+
+	line-height: 1.5em;
+	text-align: center;
+	display: inline-block;
+	width: 1.5em;
+}
+
+/* Parte superior do botão */
+.btn-top {
+	position: relative;
+	fill: #2c2a2a;
+	/* Preto fosco */
+	stroke: #202020;
+	stroke-width: 2;
+	/* Necessário para posicionar os pseudo-elementos */
+	display: inline-block;
+	width: 100px;
+	/* Largura do botão */
+	height: 50px;
+	/* Altura da parte superior */
+	border-radius: 50%;
+	/* Forma arredondada */
+	background: radial-gradient(circle at top, #333232, #3f3e3e);
+	/* Gradiente para a parte superior */
+	box-shadow: 0px 4px 0px #1c1c1c, 0px 6px 10px rgba(34, 33, 33, 0.4);
+	/* Sombra para profundidade */
+
+	/* Reflexo */
+	overflow: hidden;
+}
+
+.btn-top::after {
+	content: "";
+	position: absolute;
+	bottom: -10px;
+	/* Posição do reflexo abaixo do botão */
+	left: 0;
+	width: 100%;
+	height: 50%;
+	/* Tamanho do reflexo */
+	background: linear-gradient(to bottom, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0));
+	/* Gradiente suave para simular o reflexo */
+	transform: scaleY(-1);
+	/* Inverte o reflexo verticalmente */
+	opacity: 0.3;
+	/* Opacidade para suavizar o reflexo */
+}
+
+/* Pressionar o botão */
+.btn-top:active {
+	transform: translateY(4px);
+	/* Move o botão para baixo ao clicar */
+	box-shadow: 0px 1px 0px #1c1c1c, 0px 3px 6px rgba(0, 0, 0, 0.4);
+	/* Reduz a sombra ao pressionar */
+}
+
+/* Destaque ao passar o mouse */
+.btn-top:hover {
+	filter: brightness(1.2);
+	fill: #57a59a;
+	filter: drop-shadow(3px 3px 10px rgba(0, 0, 0, 0.5));
+	/* Efeito de destaque */
+}
+
+/* Footer fixo */
+footer {
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	text-align: center;
+	padding: 10px;
+	font-size: 14px;
+	color: #333;
+	background: none;
+	z-index: 5;
+	/* Acima de outros elementos */
+}

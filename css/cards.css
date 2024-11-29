@@ -1,0 +1,669 @@
+:root {
+  --background-clr: hsl(0, 0%, 98%);
+  --text-clr-titles: hsl(234, 12%, 34%);
+  --text-clr-description: hsl(234, 12%, 34%);
+  --card-clr-green: #57a59a;
+  --card-clr-red: hsl(0, 78%, 62%);
+  --card-clr-orange: hsl(34, 97%, 64%);
+  --card-clr-blue: hsl(212, 86%, 64%);
+}
+
+*, *:after, *:before {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Poppins', sans-serif;
+  background-color: var(--background-clr);
+  overflow-x: hidden;
+}
+
+.wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem 1rem;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 1200px;
+  width: 100%;
+  padding: 0 1rem;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.header-title {
+  font-weight: 700;
+  font-size: 1.8rem;
+  color: #ffff;
+  line-height: 1 !important;
+}
+
+.card-ctn {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  width: 100%;
+  max-width: 1200px;
+  justify-content: center;
+}
+
+.card {
+  background-color: #fff;
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.1);
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: auto;
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  position: relative;
+}
+
+.card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 1.5rem 3rem rgba(0, 0, 0, 0.15);
+}
+
+.card:after {
+  content: '';
+  position: absolute;
+  height: 4px;
+  width: 100%;
+  top: 0;
+  left: 0;
+  border-radius: 0.5rem 0.5rem 0 0;
+}
+
+.card:nth-child(1):after {
+  background: var(--card-clr-green);
+}
+
+.card:nth-child(2):after {
+  background: var(--card-clr-green);
+}
+
+.card:nth-child(3):after {
+  background: var(--card-clr-green);
+}
+
+.card:nth-child(4):after {
+  background: var(--card-clr-green);
+}
+
+.card-title {
+  font-size: 1rem;
+  color: var(--text-clr-titles);
+  text-align: center;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+}
+
+.card-description {
+  font-size: 0.8rem;
+  color: var(--text-clr-description);
+  text-align: center;
+  line-height: 1.2;
+}
+
+.card-illustration img {
+  max-width: 120px;
+  max-height: 100px;
+  object-fit: contain;
+  margin-top: -0.5rem;
+}
+
+
+/* Ajuste para telas médias */
+@media (max-width: 1080px) {
+  .card-ctn {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  .card {
+    max-width: 240px;
+  }
+
+  .header-title {
+    font-size: 1.6rem;
+  }
+}
+
+/* Ajuste para tablets */
+@media (max-width: 768px) {
+  .card-ctn {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    justify-items: center;
+  }
+
+  .card {
+    max-width: 90%;
+    min-height: 150px;
+  }
+
+  .card-illustration img {
+    max-width: 40px;
+    max-height: 40px;
+  }
+
+  .header-title {
+    font-size: 1.4rem;
+    line-height: 1 !important;
+  }
+}
+
+@media (max-width: 1400px) {
+  .card-ctn {
+    width: 100%;
+    margin-bottom: 100px;
+    margin-top: -8px !important;
+  }
+}
+
+/* Ajuste para celulares */
+@media (max-width: 480px) {
+  .card-ctn {
+    grid-template-columns: repeat(2, 1fr);
+    /* Configuração 2x2 */
+    gap: 0.4rem 1rem;
+    /* Primeiro valor: espaçamento entre colunas, Segundo: entre linhas */
+    justify-items: center;
+  }
+
+  .card-illustration img {
+    max-width: 100px;
+    max-height: 100px;
+    object-fit: contain;
+    margin-top: -0.5rem;
+  }
+
+  .header-title {
+    line-height: 1 !important;
+  }
+}
+
+
+/* ------------------------------------------------------------------ */
+
+
+.card-code {
+  background-color: #ffffff;
+  border-radius: 0.5rem;
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.1);
+  margin: 2rem auto;
+  width: 100%;
+  margin-top: -5px;
+  max-width: 1200px;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Linha colorida no topo */
+.card-code:after {
+  content: '';
+  position: absolute;
+  height: 4px;
+  width: 100%;
+  top: 0;
+  left: 0;
+  border-radius: 0.5rem 0.5rem 0 0;
+  background: var(--card-clr-green);
+  /* Mesma cor usada no card 4 */
+}
+
+.code-header {
+  background-color: #f4f4f4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 1rem !important;
+  padding-bottom: 0.5rem !important;
+  border-bottom: 2px solid #575454;
+  /* Separador entre header e código */
+}
+
+.code-header .icon-micropython {
+  max-width: auto;
+  /* Tamanho fixo do ícone */
+  max-height: 60px;
+  width: auto;
+  height: auto;
+  margin-right: 0.8rem;
+  padding-bottom: 0.2rem !important;
+  /* Espaço entre ícone e texto */
+}
+
+.code-header .header-text {
+  color: #000000;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.code-content {
+  background-color: #f4f4f4;
+
+  padding: 0.8rem;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.8rem;
+  line-height: 1 !important;
+  text-align: left;
+  height: 300px;
+  /* Altura fixa para permitir rolagem */
+  overflow-y: auto;
+  /* Habilita rolagem vertical */
+  border-radius: 0 0 0.5rem 0.5rem;
+}
+
+.code-content code {
+  color: #2e3153;
+  white-space: pre-wrap;
+  /* Ajusta quebra de linha */
+}
+
+.code-content .keyword {
+  color: #007acc;
+  font-weight: bold;
+}
+
+.code-content .comment {
+  color: #6a737d;
+  font-style: italic;
+}
+
+
+/* Responsividade */
+@media (max-width: 1400px) {
+  .card-code {
+    width: 100%;
+    margin-bottom: 100px;
+    margin-top: -8px !important;
+  }
+
+  .code-content {
+    font-size: 0.6rem;
+  }
+
+  .code-content {
+    background-color: #f4f4f4;
+    padding: 0.8rem;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.8rem;
+    line-height: 1.2;
+    text-align: left;
+    height: 200px;
+    /* Altura fixa para permitir rolagem */
+    overflow-y: auto;
+    /* Habilita rolagem vertical */
+    border-radius: 0 0 0.5rem 0.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .card-code {
+    width: 100%;
+  }
+
+  .code-content {
+    font-size: 0.8rem;
+  }
+}
+
+/* Responsividade */
+@media (max-width: 400px) {
+  .card-code {
+    width: 100%;
+    margin-bottom: 40px !important;
+    margin-top: 12px;
+  }
+
+  .code-content {
+    font-size: 0.5rem !important;
+  }
+
+  .code-content {
+    background-color: #f4f4f4;
+    padding: 0.8rem;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.8rem;
+    line-height: 1.5;
+    text-align: left;
+    height: 300px;
+    /* Altura fixa para permitir rolagem */
+    overflow-y: auto;
+    /* Habilita rolagem vertical */
+    border-radius: 0 0 0.5rem 0.5rem;
+  }
+}
+
+/* -------------------------------------------------------------------------- */
+
+/* Estilo Geral do Card */
+.carousel-card {
+  width: 100%;
+  max-width: 900px;
+  position: relative;
+  overflow: hidden;
+  margin-top: -10px;
+  margin-bottom: 20px;
+}
+
+/* Container dos Itens do Carousel */
+.carousel-cards {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+  width: 100%;
+}
+
+/* Cada Item do Carousel */
+.carousel-item {
+  flex: 0 0 100%;
+  /* Cada item ocupa 100% da largura visível */
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  /* Alinha os itens (imagem e título) na vertical */
+  justify-content: center;
+  /* Alinha o conteúdo no centro */
+  align-items: center;
+  /* Alinha os itens no centro */
+}
+
+/* Imagem dentro do Item */
+.carousel-item img {
+  width: 100%;
+  height: auto;
+  /* Ajusta a altura da imagem proporcionalmente */
+  max-height: 100%;
+  /* Garante que a imagem não ultrapasse a altura do card */
+  object-fit: contain;
+  /* Mantém a imagem inteira visível sem distorção */
+  object-position: center;
+  /* Garante que a imagem seja centralizada */
+  border-radius: 10px;
+  /* Bordas arredondadas */
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Estilo do Título */
+.carousel-item h4 {
+  margin-top: 10px;
+  font-size: 18px;
+  font-weight: normal;
+  color: #e2dada;
+  text-align: center;
+  /* Garante que o título fique centralizado */
+  max-width: 100%;
+  /* Garante que o título não ultrapasse o card */
+}
+
+/* Botões do Carousel */
+.carousel-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  border: 2px solid #57a59a;
+  /* Borda sólida de 2px */
+  background-color: white;
+  /* Fundo branco no botão */
+  color: #57a59a;
+  /* Cor do texto do botão */
+  font-size: 14px;
+  /* Tamanho da fonte */
+  border-radius: 50%;
+  /* Borda arredondada (circular) */
+  padding: 6px 10px 6px 10px;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.carousel-button.prev {
+  left: 20px;
+}
+
+.carousel-button.next {
+  right: 20px;
+}
+
+.carousel-button:hover {
+  background-color: rgba(199, 196, 196, 0.8);
+}
+
+.carousel-item {
+  display: none;
+  /* Ocultar todos os itens inicialmente */
+}
+
+.carousel-item:first-child {
+  display: block;
+  /* Mostrar o primeiro item por padrão */
+}
+
+/* Media Queries para Responsividade */
+
+/* Para telas maiores que 1200px */
+@media (max-width: 1400px) {
+  .carousel-card {
+    width: 100%;
+    max-width: 900px;
+    position: relative;
+    overflow: hidden;
+    margin-top: -30px;
+    margin-bottom: 100px;
+  }
+
+  .carousel-item img {
+    width: 100%;
+    max-width: 500px;
+    position: relative;
+    overflow: hidden;
+    margin-top: 20px;
+    margin-bottom: 10px;
+  }
+
+  .carousel-button.prev {
+    left: 20px;
+  }
+
+  .carousel-button.next {
+    right: 20px;
+  }
+}
+
+/* Para telas entre 1080px e 768px (tablets) */
+@media (max-width: 1080px) {
+  .carousel-item img {
+    max-width: 500px !important;
+    height: auto;
+  }
+}
+
+/* Para telas pequenas (de 768px a 480px) */
+@media (max-width: 768px) {
+  .carousel-item img {
+    max-width: 400px;
+    height: auto;
+  }
+
+  .carousel-button {
+    padding: 6px 10px 6px 10px;
+  }
+}
+
+/* Para telas muito pequenas (celulares) */
+@media (max-width: 480px) {
+  .carousel-item img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .carousel-button {
+    padding: 6px 10px 6px 10px;
+  }
+}
+
+/* -------------------------------------------------------------------------------------------- */
+
+/* Cards de Desenvolvedores */
+.developer-card {
+  background-color: #fff;
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.1);
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: auto;
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  position: relative;
+}
+
+/* Textos Internos */
+.developer-card .card-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+.developer-card .card-description {
+  font-size: 1rem;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+/* Link do LinkedIn */
+.developer-card .linkedin-icon {
+  font-size: 0.85rem; /* Reduzindo o tamanho da fonte */
+  color: #0077b5; /* Cor oficial do LinkedIn */
+  text-decoration: none;
+  margin-top: auto; /* Mantém o link alinhado na parte inferior */
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  transition: color 0.2s ease-in-out;
+}
+
+.developer-card .linkedin-icon:hover {
+  color: #005582; /* Cor de hover */
+}
+
+
+
+
+
+
+
+
+
+/* Ajustes para telas menores */
+@media (max-width: 768px) {
+  .developer-card {
+    width: 100%; /* Cards ocupam toda a largura */
+    max-width: 400px; /* Define uma largura máxima */
+    height: auto; /* Altura ajustável */
+  }
+
+  .card-center {
+    grid-column: 1 / -1; /* O card central ocupa toda a linha */
+    justify-self: center; /* Centraliza horizontalmente */
+  }
+
+  /* Oculta o ícone do Slide 4 na navegação */
+  .cd-slider-navigation li:nth-child(4) {
+    display: none;
+  }
+
+  /* Textos Internos */
+.developer-card .card-title {
+  font-size: 1.6rem;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+.developer-card .card-description {
+  font-size: 1rem;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+/* Link do LinkedIn */
+.developer-card .linkedin-icon {
+  font-size: 0.85rem; /* Reduzindo o tamanho da fonte */
+  color: #0077b5; /* Cor oficial do LinkedIn */
+  text-decoration: none;
+  gap: 5px;
+  transition: color 0.2s ease-in-out;
+}
+}
+
+/* Ajustes para telas menores */
+@media (max-width: 480px) {
+  .developer-card {
+    width: 100%; /* Cards ocupam toda a largura */
+    max-width: 400px; /* Define uma largura máxima */
+    height: auto; /* Altura ajustável */
+  }
+
+  .card-center {
+    grid-column: 1 / -1; /* O card central ocupa toda a linha */
+    justify-self: center; /* Centraliza horizontalmente */
+  }
+
+  /* Oculta o ícone do Slide 4 na navegação */
+  .cd-slider-navigation li:nth-child(4) {
+    display: none;
+  }
+
+  /* Textos Internos */
+.developer-card .card-title {
+  font-size: 10px !important;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+.developer-card .card-description {
+  font-size: 8px !important;
+  color: #666;
+  margin-bottom: 10px;
+}
+
+/* Link do LinkedIn */
+.developer-card .linkedin-icon {
+  font-size: 10px !important; /* Reduzindo o tamanho da fonte */
+  color: #0077b5; /* Cor oficial do LinkedIn */
+  text-decoration: none;
+  margin-top: auto; /* Mantém o link alinhado na parte inferior */
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  transition: color 0.2s ease-in-out;
+}
+
+.card-title {
+  font-size: 10px !important;
+  color: var(--text-clr-titles);
+  text-align: center;
+  margin-bottom: 0.5rem;
+  font-size: 10px !important;
+  font-weight: bold;
+}
+}
