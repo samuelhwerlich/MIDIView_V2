@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projeto de Desenho Técnico Avançado - IFC SBS</title>
+    <!-- Estilos -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/jquery-ui.min.css" />
+    <link rel="stylesheet" href="./css/jquery-ui.structure.min.css" />
+    <link rel="stylesheet" href="./css/jquery-ui.theme.min.css" />
+    <link rel="stylesheet" href="./css/midiview.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <!-- Jquery -->
+    <script src="./js/jquery-3.2.1.min.js"></script>
+    <script src="./js/jquery-ui.min.js"></script>
+</head>
+
+<body>
+    <header>
+        <h1>Projeto de Desenho Técnico Avançado</h1> <!-- Título principal adicionado -->
+        <!-- Navegação com ícones -->
+
+        <nav>
+            <button id="manual_icon" data-label="Manual">
+                <i class="fas fa-book"></i>
+                <span>Manual</span>
+            </button>
+            <button id="midi_icon" data-label="IO MIDI">
+                <i class="fas fa-music"></i>
+                <span>IO MIDI</span>
+            </button>
+            <button i data-label="Configuração MIDI">
+                <i class="fas fa-cogs"></i>
+                <span>Configurações</span>
+            </button>
+            <button id="back_to_index" data-label="Voltar ao Início">
+                <i class="fas fa-arrow-left"></i>
+                <span>Voltar</span>
+            </button>
+        </nav>
+
+        <!-- Janela de Diálogo de Manual -->
+        <div id="usageDialog" title="Manual">
+            <p>
+                Por favor, consulte também a explicação em vídeo no Youtube, este é um Fork do Projeto Accordeon Viewer:
+                <br>
+                <a href="https://www.youtube.com/watch?v=64c1Qs2L690" target="_blank" rel="noopener noreferrer">
+                    https://www.youtube.com/watch?v=64c1Qs2L690
+                </a>
+            </p>
+            <h4>Características da Aplicação</h4>
+            <ul>
+                <li>Aplicação WEB que exibe informações de performance MIDI do Roland V-Accordion na tela.</li>
+                <li>Permite verificar visualmente a expressão da força dos foles.</li>
+                <li>Exibe acordes a partir das informações de execução do Teclado de Botão Esquerdo.</li>
+                <li>Rotaciona o acordeão na tela ao pressionar o botão de rotação.</li>
+            </ul>
+            <h4>Modelo Compatível</h4>
+            <ul>
+                <li>FR-4xb</li>
+            </ul>
+            <p>Este aplicativo pode funcionar em outros modelos também, mas não é garantido.</p>
+            <h4>Configurações</h4>
+            <!-- <p>
+                <img src="./images/HowToConnect_for_pc.png" width="700" height="525">
+                <img src="./images/HowToConnect_for_ios.png" width="700" height="525">
+            </p> -->
+
+        </div>
+
+        <!-- Janela de Configuração de Dispositivo MIDI -->
+        <div id="deviceDialog" title="Configuração de Dispositivo MIDI">
+            <div class="block_frame">
+                <span class="block_frame_title">Configuração de Dispositivo MIDI</span>
+                <div id="midi_dev">
+                    <table>
+                        <tr>
+                            <td>Entrada:
+                                <form name="input_device_select">
+                                    <select name="ids" onChange="inputDeviceSelect(this);">
+                                        <option value="0">Nenhum Dispositivo</option>
+                                    </select>
+                                </form>
+                            </td>
+                            <td width="40"></td>
+                            <td>Saída:
+                                <form name="output_device_select">
+                                    <select name="ids" onChange="outputDeviceSelect(this);">
+                                        <option value="0">Nenhum Dispositivo</option>
+                                    </select>
+                                </form>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section>
+        <!-- Script para abertura dos diálogos -->
+        <script>
+            $(function () {
+                $("#usageDialog").dialog({
+                    autoOpen: false,
+                    height: 800,
+                    width: 800,
+                    modal: true,
+                    show: { effect: "fade", duration: 800 },
+                    hide: { effect: "fade", duration: 500 }
+                });
+                $("#deviceDialog").dialog({
+                    autoOpen: false,
+                    height: 200,
+                    width: 450,
+                    modal: true,
+                    show: { effect: "fade", duration: 800 },
+                    hide: { effect: "fade", duration: 500 }
+                });
+
+                $("#usage").on("click", function () { $("#usageDialog").dialog("open"); });
+                $("#device").on("click", function () { $("#deviceDialog").dialog("open"); });
+            });
+        </script>
+
+
+        <div class="center">
+            <div class="container">
+                <!-- Imagem de fundo -->
+                <img src="img/box-view_up-nbg.png" alt="Caixa Base" class="base-image">
+
+                <!-- Sobreposição da tampa -->
+                <div class="tampa">
+                    <!-- Furos nos cantos -->
+                    <div class="corner-hole top-left"></div>
+                    <div class="corner-hole top-right"></div>
+                    <div class="corner-hole bottom-left"></div>
+                    <div class="corner-hole bottom-right"></div>
+                    <!-- Reflexo na tampa -->
+                    <div class="reflection"></div>
+                    <!-- Botões -->
+                    <svg class="buttons" id="buttons" viewBox="0 0 1000 500">
+                        <!-- Os botões serão renderizados aqui -->
+                    </svg>
+                </div>
+            </div>
+
+            <script>
+                // Configurações dos botões
+                const rows = 5; // Número de linhas de botões
+                const cols = 8; // Número de colunas de botões
+                const buttonRadius = 8; // Raio dos botões (parte superior)
+                const baseRadius = 14.5; // Raio da base cilíndrica
+                const baseHeight = 45; // Altura da base (aumentada verticalmente)
+                const buttonHeight = 800; // Altura do botão (aumentado verticalmente)
+                const spacingX = 35; // Espaçamento horizontal entre botões
+                const spacingY = 28; // Espaçamento vertical
+
+                // Posição inicial dos botões
+                const startX = 150; // Margem esquerda da tampa
+                const startY = 200; // Margem superior ajustada para centralizar na tampa
+
+                // Selecionar o grupo de botões no SVG
+                const buttonsGroup = document.getElementById('buttons');
+
+                // Criar os botões
+                for (let row = 0; row < rows; row++) {
+                    for (let col = 0; col < cols; col++) {
+                        const x = startX + col * spacingX + row * 15; // Coordenada X com deslocamento diagonal
+                        const y = startY + row * spacingY; // Coordenada Y
+
+                        // Criar a base cilíndrica
+                        const base = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+                        base.setAttribute('cx', x); // Coordenada X
+                        base.setAttribute('cy', y); // Coordenada Y
+                        base.setAttribute('r', baseRadius); // Raio da base]
+                        base.setAttribute('height', baseHeight); // Altura da base
+                        base.setAttribute('class', 'btn-base');
+                        base.setAttribute('stroke-width', 6); // Aumenta a espessura da lateral da base
+                        buttonsGroup.appendChild(base);
+
+                        // Criar o botão elevado no topo da base
+                        const top = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+                        top.setAttribute('cx', x); // Coordenada X
+                        top.setAttribute('cy', y - 5); // Elevação inicial
+                        top.setAttribute('r', buttonRadius); // Raio do botão
+                        top.setAttribute('height', buttonHeight); // Altura do botão (aumentada)
+                        top.setAttribute('class', 'btn-top');
+                        buttonsGroup.appendChild(top);
+                    }
+                }
+
+            </script>
+        </div>
+
+
+
+    </section>
+    <footer>
+        <h1>Controlador MIDI virtualizado</h1> <!-- Título principal adicionado -->
+    </footer>
+
+    <!-- Navegação com ícones -->
+
+    <!-- Scripts Principais -->
+    <script src="./js/midi_service.js"></script>
+    <script src="./js/midiview.js"></script>
+</body>
+
+</html>
