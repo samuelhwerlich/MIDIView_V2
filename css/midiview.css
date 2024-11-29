@@ -34,6 +34,16 @@
     }
 }
 
+.manual-title {
+    font-size: 1.5rem; /* Tamanho personalizado */
+    font-weight: bold; /* Texto em negrito */
+    color: #0077b5; /* Azul para destacar */
+    text-transform: uppercase; /* Letras maiúsculas */
+    margin-bottom: 1rem; /* Espaçamento inferior */
+    display: flex; /* Para alinhar ícones, se necessário */
+    align-items: center;
+    gap: 0.5rem; /* Espaço entre texto e ícones */
+}
 
 
 h1, h2, h3, h4, h5, h6 {
