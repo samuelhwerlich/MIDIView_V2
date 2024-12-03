@@ -20,7 +20,7 @@
 .spinner {
 	border: 8px solid #f3f3f3;
 	/* Cor de fundo do spinner */
-	border-top: 8px solid #0077b5;
+	border-top: 8px solid #57a59a;
 	/* Cor principal do spinner */
 	border-radius: 50%;
 	width: 60px;
@@ -44,7 +44,7 @@
 	/* Tamanho personalizado */
 	font-weight: bold;
 	/* Texto em negrito */
-	color: #0077b5;
+	color: #57a59a;
 	/* Azul para destacar */
 	text-transform: uppercase;
 	/* Letras maiúsculas */
