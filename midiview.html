@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projeto de Desenho Técnico Avançado - IFC SBS</title>
+    <title>MIDIVIewProjeto de Desenho Técnico Avançado - IFC SBS</title>
     <!-- Estilos -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./css/jquery-ui.min.css" />
@@ -27,8 +27,6 @@
     <div id="main-content" style="display: none;">
         <header>
             <h1>Projeto de Desenho Técnico Avançado</h1> <!-- Título principal -->
-
-
             <!-- Navegação com ícones -->
             <nav>
                 <button id="manual_icon" data-label="Manual">
@@ -160,7 +158,7 @@
                         <div class="reflection"></div>
                         <!-- Botões -->
                         <svg class="buttons" id="buttons" viewBox="0 0 1000 500">
-                            <!-- Os botões serão renderizados aqui -->
+                            
                         </svg>
                     </div>
                 </div>
@@ -171,14 +169,14 @@
                     const cols = 8; // Número de colunas de botões
                     const buttonRadius = 8; // Raio dos botões (parte superior)
                     const baseRadius = 14.5; // Raio da base cilíndrica
-                    const baseHeight = 45; // Altura da base (aumentada verticalmente)
-                    const buttonHeight = 800; // Altura do botão (aumentado verticalmente)
+                    const baseHeight = 45; // Altura da base
+                    const buttonHeight = 800; // Altura do botão 
                     const spacingX = 35; // Espaçamento horizontal entre botões
                     const spacingY = 28; // Espaçamento vertical
 
                     // Posição inicial dos botões
                     const startX = 150; // Margem esquerda da tampa
-                    const startY = 200; // Margem superior ajustada para centralizar na tampa
+                    const startY = 200; // Margem superior para centralizar na tampa
 
                     // Selecionar o grupo de botões no SVG
                     const buttonsGroup = document.getElementById('buttons');
@@ -204,7 +202,7 @@
                             top.setAttribute('cx', x); // Coordenada X
                             top.setAttribute('cy', y - 5); // Elevação inicial
                             top.setAttribute('r', buttonRadius); // Raio do botão
-                            top.setAttribute('height', buttonHeight); // Altura do botão (aumentada)
+                            top.setAttribute('height', buttonHeight); // Altura do botão
                             top.setAttribute('class', 'btn-top');
                             buttonsGroup.appendChild(top);
                         }
@@ -212,12 +210,9 @@
 
                 </script>
             </div>
-
-
-
         </section>
         <footer>
-            <h1>Controlador MIDI Virtual</h1> <!-- Título principal adicionado -->
+            <h1>Controlador MIDI Virtual</h1> 
         </footer>
     </div>
     <!-- Navegação com ícones -->
