@@ -598,7 +598,6 @@ Slider navigation
 }
 
 .cd-slider-navigation li.selected:first-of-type a {
-  /* change custom icon using image sprites */
   background-position: -10px -70px;
 }
 
@@ -627,7 +626,7 @@ Slider navigation
 }
 
 .cd-slider-navigation em {
-  /* tooltip visible on hover */
+
   position: absolute;
   bottom: calc(100% + 10px);
   left: 50%;
@@ -651,7 +650,7 @@ Slider navigation
 }
 
 .cd-slider-navigation em::after {
-  /* tooltip arrow */
+
   content: '';
   position: absolute;
   left: 50%;
@@ -683,12 +682,12 @@ Slider navigation
   }
 
   .cd-slider-navigation li:first-of-type a {
-    /* change custom icon using image sprites */
+    
     background-position: 0 0px;
   }
 
   .cd-slider-navigation li.selected:first-of-type a {
-    /* change custom icon using image sprites */
+  
     background-position: 0 -60px;
   }
 
