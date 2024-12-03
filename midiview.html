@@ -18,203 +18,208 @@
 </head>
 
 <body>
-     <!-- Loader -->
-     <div id="loader">
+    <!-- Loader -->
+    <div id="loader">
         <div class="spinner"></div>
     </div>
 
     <!-- Conteúdo da Página -->
     <div id="main-content" style="display: none;">
-    <header>
-        <h1>Projeto de Desenho Técnico Avançado</h1> <!-- Título principal adicionado -->
-        <!-- Navegação com ícones -->
-
-        <nav>
-            <button id="manual_icon" data-label="Manual">
-                <i class="fas fa-book"></i>
-                <span>Manual</span>
-            </button>
-            <button id="midi_icon" data-label="IO MIDI">
-                <i class="fas fa-music"></i>
-                <span>IO MIDI</span>
-            </button>
-            <button i data-label="Configuração MIDI">
-                <i class="fas fa-cogs"></i>
-                <span>Configurações</span>
-            </button>
-            <button id="back_to_index" data-label="Voltar ao Início">
-                <i class="fas fa-arrow-left"></i>
-                <span>Voltar</span>
-            </button>
-        </nav>
-
-        <!-- Janela de Diálogo de Manual -->
-        <div id="usageDialog" title="Manual">
-            <h4 class="manual-title">Manual do Projeto (Em Desenvolvimento) 🚀</h4>
-<ul>
-    <li>
-        ⚠️ <strong>Importante:</strong> A integração entre o controlador MIDI físico e o modelo virtual <strong>não foi implementada</strong> e não está prevista para ser desenvolvida por nossa equipe. 
-        <br>💡 No entanto, essa funcionalidade pode ser explorada por outros interessados em projetos futuros.
-    </li>
-    <li>
-        🎓 Este site foi desenvolvido com <strong>finalidade educacional</strong>, documentando e registrando o progresso deste projeto.
-    </li>
-    <li>
-        🛠️ O projeto tem como foco principal a <strong>prototipagem</strong> e a construção do modelo físico do controlador MIDI.
-    </li>
-    <li>
-        🎶 O controlador MIDI é uma ferramenta versátil, <strong>adaptável a diversas aplicações práticas</strong>.
-    </li>
-</ul>
-
-<h4 class="manual-title">Para mais informações:</h4>
-<p>
-    Este site foi desenvolvido do zero, mas inspirado no projeto <strong>Accordion Viewer</strong>, que integra um acordeão físico profissional com um modelo virtual. 
-    <br>🔗 Para mais detalhes sobre o funcionamento, recomendamos assistir à explicação disponível no vídeo no YouTube:
-    <br>
-    <a href="https://www.youtube.com/watch?v=64c1Qs2L690" target="_blank" rel="noopener noreferrer">
-        👉 https://www.youtube.com/watch?v=64c1Qs2L690
-    </a>
-</p>
-                        <!-- <p>
-                <img src="./images/HowToConnect_for_pc.png" width="700" height="525">
-                <img src="./images/HowToConnect_for_ios.png" width="700" height="525">
-            </p> -->
-
-        </div>
-
-        <!-- Janela de Configuração de Dispositivo MIDI -->
-        <div id="deviceDialog" title="Configuração de Dispositivo MIDI">
-            <div class="block_frame">
-                <span class="block_frame_title">Configuração de Dispositivo MIDI</span>
-                <div id="midi_dev">
-                    <table>
-                        <tr>
-                            <td>Entrada:
-                                <form name="input_device_select">
-                                    <select name="ids" onChange="inputDeviceSelect(this);">
-                                        <option value="0">Nenhum Dispositivo</option>
-                                    </select>
-                                </form>
-                            </td>
-                            <td width="40"></td>
-                            <td>Saída:
-                                <form name="output_device_select">
-                                    <select name="ids" onChange="outputDeviceSelect(this);">
-                                        <option value="0">Nenhum Dispositivo</option>
-                                    </select>
-                                </form>
-                            </td>
-                        </tr>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </header>
-
-    <section>
-        <!-- Script para abertura dos diálogos -->
-        <script>
-            $(function () {
-                $("#usageDialog").dialog({
-                    autoOpen: false,
-                    height: 800,
-                    width: 800,
-                    modal: true,
-                    show: { effect: "fade", duration: 800 },
-                    hide: { effect: "fade", duration: 500 }
-                });
-                $("#deviceDialog").dialog({
-                    autoOpen: false,
-                    height: 200,
-                    width: 450,
-                    modal: true,
-                    show: { effect: "fade", duration: 800 },
-                    hide: { effect: "fade", duration: 500 }
-                });
-
-                $("#usage").on("click", function () { $("#usageDialog").dialog("open"); });
-                $("#device").on("click", function () { $("#deviceDialog").dialog("open"); });
-            });
-        </script>
+        <header>
+            <h1>Projeto de Desenho Técnico Avançado</h1> <!-- Título principal -->
 
 
-        <div class="center">
-            <div class="container">
-                <!-- Imagem de fundo -->
-                <img src="img/box-view_up-nbg.png" alt="Caixa Base" class="base-image">
+            <!-- Navegação com ícones -->
+            <nav>
+                <button id="manual_icon" data-label="Manual">
+                    <i class="fas fa-book"></i>
+                    <span>Manual</span>
+                </button>
+                <button id="midi_icon" data-label="IO MIDI">
+                    <i class="fas fa-music"></i>
+                    <span>IO MIDI</span>
+                </button>
+                <button i data-label="Configuração MIDI">
+                    <i class="fas fa-cogs"></i>
+                    <span>Configurações</span>
+                </button>
+                <button id="back_to_index" data-label="Voltar ao Início">
+                    <i class="fas fa-arrow-left"></i>
+                    <span>Voltar</span>
+                </button>
+            </nav>
 
-                <!-- Sobreposição da tampa -->
-                <div class="tampa">
-                    <!-- Furos nos cantos -->
-                    <div class="corner-hole top-left"></div>
-                    <div class="corner-hole top-right"></div>
-                    <div class="corner-hole bottom-left"></div>
-                    <div class="corner-hole bottom-right"></div>
-                    <!-- Reflexo na tampa -->
-                    <div class="reflection"></div>
-                    <!-- Botões -->
-                    <svg class="buttons" id="buttons" viewBox="0 0 1000 500">
-                        <!-- Os botões serão renderizados aqui -->
-                    </svg>
-                </div>
+            <!-- Janela de Diálogo de Manual -->
+            <div id="usageDialog" title="Manual">
+                <h4 class="manual-title">Manual do Projeto (Em Desenvolvimento) 🚀</h4>
+                <ul>
+                    <li>
+                        ⚠️ <strong>Importante:</strong> A integração entre o controlador MIDI físico e o modelo virtual
+                        <strong>não foi implementada</strong> e não está prevista para ser desenvolvida por nossa
+                        equipe.
+                        <br>💡 No entanto, essa funcionalidade pode ser explorada por outros interessados em projetos
+                        futuros.
+                    </li>
+                    <li>
+                        🎓 Este site foi desenvolvido com <strong>finalidade educacional</strong>, documentando e
+                        registrando o progresso deste projeto.
+                    </li>
+                    <li>
+                        🛠️ O projeto tem como foco principal a <strong>prototipagem</strong> e a construção do modelo
+                        físico do controlador MIDI.
+                    </li>
+                    <li>
+                        🎶 O controlador MIDI é uma ferramenta versátil, <strong>adaptável a diversas aplicações
+                            práticas</strong>.
+                    </li>
+                </ul>
+
+                <h4 class="manual-title">Para mais informações:</h4>
+                <p>
+                    Este site foi desenvolvido do zero, mas inspirado no projeto <strong>Accordion Viewer</strong>, que
+                    integra um acordeão físico profissional com um modelo virtual.
+                    <br>🔗 Para mais detalhes sobre o funcionamento, recomendamos assistir à explicação disponível no
+                    vídeo no YouTube:
+                    <br>
+                    <a href="https://www.youtube.com/watch?v=64c1Qs2L690" target="_blank" rel="noopener noreferrer">
+                        👉 https://www.youtube.com/watch?v=64c1Qs2L690
+                    </a>
+                </p>
+
             </div>
 
+            <!-- Janela de Configuração de Dispositivo MIDI -->
+            <div id="deviceDialog" title="Configuração de Dispositivo MIDI">
+                <div class="block_frame">
+                    <span class="block_frame_title">Configuração de Dispositivo MIDI</span>
+                    <div id="midi_dev">
+                        <table>
+                            <tr>
+                                <td>Entrada:
+                                    <form name="input_device_select">
+                                        <select name="ids" onChange="inputDeviceSelect(this);">
+                                            <option value="0">Nenhum Dispositivo</option>
+                                        </select>
+                                    </form>
+                                </td>
+                                <td width="40"></td>
+                                <td>Saída:
+                                    <form name="output_device_select">
+                                        <select name="ids" onChange="outputDeviceSelect(this);">
+                                            <option value="0">Nenhum Dispositivo</option>
+                                        </select>
+                                    </form>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <section>
+            <!-- Script para abertura dos diálogos -->
             <script>
-                // Configurações dos botões
-                const rows = 5; // Número de linhas de botões
-                const cols = 8; // Número de colunas de botões
-                const buttonRadius = 8; // Raio dos botões (parte superior)
-                const baseRadius = 14.5; // Raio da base cilíndrica
-                const baseHeight = 45; // Altura da base (aumentada verticalmente)
-                const buttonHeight = 800; // Altura do botão (aumentado verticalmente)
-                const spacingX = 35; // Espaçamento horizontal entre botões
-                const spacingY = 28; // Espaçamento vertical
+                $(function () {
+                    $("#usageDialog").dialog({
+                        autoOpen: false,
+                        height: 800,
+                        width: 800,
+                        modal: true,
+                        show: { effect: "fade", duration: 800 },
+                        hide: { effect: "fade", duration: 500 }
+                    });
+                    $("#deviceDialog").dialog({
+                        autoOpen: false,
+                        height: 200,
+                        width: 450,
+                        modal: true,
+                        show: { effect: "fade", duration: 800 },
+                        hide: { effect: "fade", duration: 500 }
+                    });
 
-                // Posição inicial dos botões
-                const startX = 150; // Margem esquerda da tampa
-                const startY = 200; // Margem superior ajustada para centralizar na tampa
-
-                // Selecionar o grupo de botões no SVG
-                const buttonsGroup = document.getElementById('buttons');
-
-                // Criar os botões
-                for (let row = 0; row < rows; row++) {
-                    for (let col = 0; col < cols; col++) {
-                        const x = startX + col * spacingX + row * 15; // Coordenada X com deslocamento diagonal
-                        const y = startY + row * spacingY; // Coordenada Y
-
-                        // Criar a base cilíndrica
-                        const base = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-                        base.setAttribute('cx', x); // Coordenada X
-                        base.setAttribute('cy', y); // Coordenada Y
-                        base.setAttribute('r', baseRadius); // Raio da base]
-                        base.setAttribute('height', baseHeight); // Altura da base
-                        base.setAttribute('class', 'btn-base');
-                        base.setAttribute('stroke-width', 6); // Aumenta a espessura da lateral da base
-                        buttonsGroup.appendChild(base);
-
-                        // Criar o botão elevado no topo da base
-                        const top = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-                        top.setAttribute('cx', x); // Coordenada X
-                        top.setAttribute('cy', y - 5); // Elevação inicial
-                        top.setAttribute('r', buttonRadius); // Raio do botão
-                        top.setAttribute('height', buttonHeight); // Altura do botão (aumentada)
-                        top.setAttribute('class', 'btn-top');
-                        buttonsGroup.appendChild(top);
-                    }
-                }
-
+                    $("#usage").on("click", function () { $("#usageDialog").dialog("open"); });
+                    $("#device").on("click", function () { $("#deviceDialog").dialog("open"); });
+                });
             </script>
-        </div>
+
+
+            <div class="center">
+                <div class="container">
+                    <!-- Imagem de fundo -->
+                    <img src="img/box-view_up-nbg.png" alt="Caixa Base" class="base-image">
+
+                    <!-- Sobreposição da tampa -->
+                    <div class="tampa">
+                        <!-- Furos nos cantos -->
+                        <div class="corner-hole top-left"></div>
+                        <div class="corner-hole top-right"></div>
+                        <div class="corner-hole bottom-left"></div>
+                        <div class="corner-hole bottom-right"></div>
+                        <!-- Reflexo na tampa -->
+                        <div class="reflection"></div>
+                        <!-- Botões -->
+                        <svg class="buttons" id="buttons" viewBox="0 0 1000 500">
+                            <!-- Os botões serão renderizados aqui -->
+                        </svg>
+                    </div>
+                </div>
+
+                <script>
+                    // Configurações dos botões
+                    const rows = 5; // Número de linhas de botões
+                    const cols = 8; // Número de colunas de botões
+                    const buttonRadius = 8; // Raio dos botões (parte superior)
+                    const baseRadius = 14.5; // Raio da base cilíndrica
+                    const baseHeight = 45; // Altura da base (aumentada verticalmente)
+                    const buttonHeight = 800; // Altura do botão (aumentado verticalmente)
+                    const spacingX = 35; // Espaçamento horizontal entre botões
+                    const spacingY = 28; // Espaçamento vertical
+
+                    // Posição inicial dos botões
+                    const startX = 150; // Margem esquerda da tampa
+                    const startY = 200; // Margem superior ajustada para centralizar na tampa
+
+                    // Selecionar o grupo de botões no SVG
+                    const buttonsGroup = document.getElementById('buttons');
+
+                    // Criar os botões
+                    for (let row = 0; row < rows; row++) {
+                        for (let col = 0; col < cols; col++) {
+                            const x = startX + col * spacingX + row * 15; // Coordenada X com deslocamento diagonal
+                            const y = startY + row * spacingY; // Coordenada Y
+
+                            // Criar a base cilíndrica
+                            const base = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+                            base.setAttribute('cx', x); // Coordenada X
+                            base.setAttribute('cy', y); // Coordenada Y
+                            base.setAttribute('r', baseRadius); // Raio da base]
+                            base.setAttribute('height', baseHeight); // Altura da base
+                            base.setAttribute('class', 'btn-base');
+                            base.setAttribute('stroke-width', 6); // Aumenta a espessura da lateral da base
+                            buttonsGroup.appendChild(base);
+
+                            // Criar o botão elevado no topo da base
+                            const top = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+                            top.setAttribute('cx', x); // Coordenada X
+                            top.setAttribute('cy', y - 5); // Elevação inicial
+                            top.setAttribute('r', buttonRadius); // Raio do botão
+                            top.setAttribute('height', buttonHeight); // Altura do botão (aumentada)
+                            top.setAttribute('class', 'btn-top');
+                            buttonsGroup.appendChild(top);
+                        }
+                    }
+
+                </script>
+            </div>
 
 
 
-    </section>
-    <footer>
-        <h1>Controlador MIDI Virtual</h1> <!-- Título principal adicionado -->
-    </footer>
-</div>
+        </section>
+        <footer>
+            <h1>Controlador MIDI Virtual</h1> <!-- Título principal adicionado -->
+        </footer>
+    </div>
     <!-- Navegação com ícones -->
 
     <!-- Scripts Principais -->
