@@ -172,6 +172,7 @@
                     const buttonHeight = 800; // Altura do botão 
                     const spacingX = 35; // Espaçamento horizontal entre botões
                     const spacingY = 28; // Espaçamento vertical
+                    let clickTimeout; // Declaração global
 
                     // Posição inicial dos botões
                     const startX = 150; // Margem esquerda da tampa
@@ -186,6 +187,7 @@
                         98.00,  // G (Sol)
                         110.00, // A (Lá)
                         123.47, // B (Si)
+
                         130.81, // C (Dó - oitava superior)
                         146.83, // D (Ré - oitava superior)
                         164.81, // E (Mi - oitava superior)
@@ -193,6 +195,7 @@
                         196.00, // G (Sol - oitava superior)
                         220.00, // A (Lá - oitava superior)
                         246.94, // B (Si - oitava superior)
+
                         261.63, // C (Dó - oitava superior)
                         293.66, // D (Ré - oitava superior)
                         329.63, // E (Mi - oitava superior)
@@ -200,6 +203,7 @@
                         392.00, // G (Sol - oitava superior)
                         440.00, // A (Lá - oitava superior),
                         493.88, // B (Si - oitava superior)
+
                         523.25, // C (Dó - oitava superior)
                         587.33, // D (Ré - oitava superior)
                         659.25, // E (Mi - oitava superior)
@@ -207,6 +211,7 @@
                         783.99, // G (Sol - oitava superior)
                         880.00, // A (Lá - oitava superior)
                         987.77, // B (Si - oitava superior)
+
                         1046.50, // C (Dó - oitava superior)
                         1174.66, // D (Ré - oitava superior)
                         1318.51, // E (Mi - oitava superior)
@@ -214,9 +219,11 @@
                         1567.98, // G (Sol - oitava superior)
                         1760.00, // A (Lá - oitava superior)
                         1975.53, // B (Si - oitava superior)
+
                         2093.00, // C (Dó - oitava superior)
                         2349.32, // D (Ré - oitava superior)
                         2637.02, // E (Mi - oitava superior)
+                        3135.96, // G (Sol - oitava superior)
                         2793.83  // F (Fá - oitava superior)
                     ];
 
@@ -247,9 +254,11 @@
                             top.setAttribute('class', 'btn-top');
                             buttonsGroup.appendChild(top);
 
-                            // Adicionar evento de clique no botão
+
+                            // Por:
                             top.addEventListener('click', () => {
-                                playSound(frequencies[row * cols + col]); // Tocar a frequência associada ao botão
+                                const frequency = frequencies[row * cols + col];
+                                handleClick(frequency);
                             });
                         }
                     }
@@ -263,6 +272,21 @@
                         oscillator.connect(audioContext.destination); // Conectar o oscilador aos alto-falantes
                         oscillator.start(); // Começar o som
                         oscillator.stop(audioContext.currentTime + 0.5); // Parar o som após 0.5 segundos
+                    }
+
+                    function handleClick(frequency) {
+                        if (clickTimeout) {
+                            // Se o timer já existe, é um clique duplo; ignore
+                            clearTimeout(clickTimeout);
+                            clickTimeout = null;
+                            return;
+                        }
+
+                        // Inicie o timer para tratar como um clique único
+                        clickTimeout = setTimeout(() => {
+                            playSound(frequency); // Chama a função de tocar o som
+                            clickTimeout = null; // Reseta o timer após a ação
+                        }, 300); // 300ms para distinguir cliques simples de duplos
                     }
                 </script>
 
