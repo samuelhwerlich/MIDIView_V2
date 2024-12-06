@@ -163,74 +163,106 @@
                 </div>
 
                 <script>
-                    // Configurações dos botões
+                    /// Configurações dos botões
                     const rows = 5; // Número de linhas de botões
                     const cols = 8; // Número de colunas de botões
                     const buttonRadius = 8; // Raio dos botões (parte superior)
                     const baseRadius = 14.5; // Raio da base cilíndrica
+                    const baseHeight = 45; // Altura da base
+                    const buttonHeight = 800; // Altura do botão 
                     const spacingX = 35; // Espaçamento horizontal entre botões
                     const spacingY = 28; // Espaçamento vertical
 
                     // Posição inicial dos botões
                     const startX = 150; // Margem esquerda da tampa
-                    const startY = 50; // Margem superior para centralizar na tampa
+                    const startY = 200; // Margem superior para centralizar na tampa
 
-                    // Frequências das notas para 40 botões no sistema Stradella
+                    // Frequências das notas para 40 botões no sistema Stradella (baixos fundamentais)
                     const frequencies = [
-                        65.41, 73.42, 82.41, 87.31, 98.00, 110.00, 123.47, 130.81,
-                        146.83, 164.81, 174.61, 196.00, 220.00, 246.94, 261.63, 293.66,
-                        329.63, 349.23, 392.00, 440.00, 493.88, 523.25, 587.33, 659.25,
-                        698.46, 783.99, 880.00, 987.77, 1046.50, 1174.66, 1318.51, 1396.91,
-                        1567.98, 1760.00, 1975.53, 2093.00, 2349.32, 2637.02, 2793.83
+                        65.41,  // C (Dó)
+                        73.42,  // D (Ré)
+                        82.41,  // E (Mi)
+                        87.31,  // F (Fá)
+                        98.00,  // G (Sol)
+                        110.00, // A (Lá)
+                        123.47, // B (Si)
+                        130.81, // C (Dó - oitava superior)
+                        146.83, // D (Ré - oitava superior)
+                        164.81, // E (Mi - oitava superior)
+                        174.61, // F (Fá - oitava superior)
+                        196.00, // G (Sol - oitava superior)
+                        220.00, // A (Lá - oitava superior)
+                        246.94, // B (Si - oitava superior)
+                        261.63, // C (Dó - oitava superior)
+                        293.66, // D (Ré - oitava superior)
+                        329.63, // E (Mi - oitava superior)
+                        349.23, // F (Fá - oitava superior)
+                        392.00, // G (Sol - oitava superior)
+                        440.00, // A (Lá - oitava superior),
+                        493.88, // B (Si - oitava superior)
+                        523.25, // C (Dó - oitava superior)
+                        587.33, // D (Ré - oitava superior)
+                        659.25, // E (Mi - oitava superior)
+                        698.46, // F (Fá - oitava superior)
+                        783.99, // G (Sol - oitava superior)
+                        880.00, // A (Lá - oitava superior)
+                        987.77, // B (Si - oitava superior)
+                        1046.50, // C (Dó - oitava superior)
+                        1174.66, // D (Ré - oitava superior)
+                        1318.51, // E (Mi - oitava superior)
+                        1396.91, // F (Fá - oitava superior)
+                        1567.98, // G (Sol - oitava superior)
+                        1760.00, // A (Lá - oitava superior)
+                        1975.53, // B (Si - oitava superior)
+                        2093.00, // C (Dó - oitava superior)
+                        2349.32, // D (Ré - oitava superior)
+                        2637.02, // E (Mi - oitava superior)
+                        2793.83  // F (Fá - oitava superior)
                     ];
 
-                    // Certifique-se de que o SVG existe no DOM
+                    // Criar os botões SVG
                     const buttonsGroup = document.getElementById('buttons');
-                    if (!buttonsGroup) {
-                        console.error('Elemento <svg id="buttons"> não encontrado no DOM!');
-                    } else {
-                        // Criar os botões
-                        for (let row = 0; row < rows; row++) {
-                            for (let col = 0; col < cols; col++) {
-                                const x = startX + col * spacingX + row * 15; // Coordenada X com deslocamento diagonal
-                                const y = startY + row * spacingY; // Coordenada Y
 
-                                // Criar a base cilíndrica
-                                const base = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-                                base.setAttribute('cx', x);
-                                base.setAttribute('cy', y);
-                                base.setAttribute('r', baseRadius);
-                                base.setAttribute('class', 'btn-base');
-                                buttonsGroup.appendChild(base);
+                    for (let row = 0; row < rows; row++) {
+                        for (let col = 0; col < cols; col++) {
+                            const x = startX + col * spacingX + row * 15; // Coordenada X com deslocamento diagonal
+                            const y = startY + row * spacingY; // Coordenada Y
 
-                                // Criar o botão elevado no topo da base
-                                const top = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-                                top.setAttribute('cx', x);
-                                top.setAttribute('cy', y - 5);
-                                top.setAttribute('r', buttonRadius);
-                                top.setAttribute('class', 'btn-top');
-                                buttonsGroup.appendChild(top);
+                            // Criar a base cilíndrica
+                            const base = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+                            base.setAttribute('cx', x); // Coordenada X
+                            base.setAttribute('cy', y); // Coordenada Y
+                            base.setAttribute('r', baseRadius); // Raio da base
+                            base.setAttribute('height', baseHeight); // Altura da base
+                            base.setAttribute('class', 'btn-base');
+                            base.setAttribute('stroke-width', 6); // Aumenta a espessura da lateral da base
+                            buttonsGroup.appendChild(base);
 
-                                // Adicionar evento de clique no botão
-                                const index = row * cols + col;
-                                if (index < frequencies.length) {
-                                    top.addEventListener('click', () => {
-                                        playSound(frequencies[index]);
-                                    });
-                                }
-                            }
+                            // Criar o botão elevado no topo da base
+                            const top = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+                            top.setAttribute('cx', x); // Coordenada X
+                            top.setAttribute('cy', y - 5); // Elevação inicial
+                            top.setAttribute('r', buttonRadius); // Raio do botão
+                            top.setAttribute('height', buttonHeight); // Altura do botão
+                            top.setAttribute('class', 'btn-top');
+                            buttonsGroup.appendChild(top);
+
+                            // Adicionar evento de clique no botão
+                            top.addEventListener('click', () => {
+                                playSound(frequencies[row * cols + col]); // Tocar a frequência associada ao botão
+                            });
                         }
                     }
 
                     // Função para tocar o som
                     function playSound(frequency) {
                         const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-                        const oscillator = audioContext.createOscillator();
+                        const oscillator = audioContext.createOscillator(); // Criar oscilador
                         oscillator.type = 'sine'; // Tipo de onda (senoide)
                         oscillator.frequency.setValueAtTime(frequency, audioContext.currentTime); // Definir a frequência
-                        oscillator.connect(audioContext.destination); // Conectar ao destino (alto-falantes)
-                        oscillator.start();
-                        oscillator.stop(audioContext.currentTime + 0.5); // Parar após 1 segundo
+                        oscillator.connect(audioContext.destination); // Conectar o oscilador aos alto-falantes
+                        oscillator.start(); // Começar o som
+                        oscillator.stop(audioContext.currentTime + 0.5); // Parar o som após 0.5 segundos
                     }
                 </script>
 
