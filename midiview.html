@@ -172,7 +172,6 @@
                     const buttonHeight = 800; // Altura do botão 
                     const spacingX = 35; // Espaçamento horizontal entre botões
                     const spacingY = 28; // Espaçamento vertical
-                    let clickTimeout; // Declaração global
 
                     // Posição inicial dos botões
                     const startX = 150; // Margem esquerda da tampa
@@ -254,11 +253,9 @@
                             top.setAttribute('class', 'btn-top');
                             buttonsGroup.appendChild(top);
 
-
-                            // Por:
+                            // Adicionar evento de clique no botão
                             top.addEventListener('click', () => {
-                                const frequency = frequencies[row * cols + col];
-                                handleClick(frequency);
+                                playSound(frequencies[row * cols + col]); // Tocar a frequência associada ao botão
                             });
                         }
                     }
@@ -272,21 +269,6 @@
                         oscillator.connect(audioContext.destination); // Conectar o oscilador aos alto-falantes
                         oscillator.start(); // Começar o som
                         oscillator.stop(audioContext.currentTime + 0.5); // Parar o som após 0.5 segundos
-                    }
-
-                    function handleClick(frequency) {
-                        if (clickTimeout) {
-                            // Se o timer já existe, é um clique duplo; ignore
-                            clearTimeout(clickTimeout);
-                            clickTimeout = null;
-                            return;
-                        }
-
-                        // Inicie o timer para tratar como um clique único
-                        clickTimeout = setTimeout(() => {
-                            playSound(frequency); // Chama a função de tocar o som
-                            clickTimeout = null; // Reseta o timer após a ação
-                        }, 300); // 300ms para distinguir cliques simples de duplos
                     }
                 </script>
 
