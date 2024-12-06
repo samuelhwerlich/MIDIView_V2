@@ -177,10 +177,18 @@
                     const startX = 150; // Margem esquerda da tampa
                     const startY = 200; // Margem superior para centralizar na tampa
 
-                    // Selecionar o grupo de botões no SVG
+                    // Frequências das notas para 40 botões (aproximadamente, mas você pode personalizar)
+                    const frequencies = [
+                        261.63, 277.18, 293.66, 311.13, 329.63, 349.23, 369.99, 392.00,  // C, C#, D, D#, E, F, F#, G
+                        415.30, 440.00, 466.16, 493.88, 523.25, 554.37, 587.33, 622.25,  // G#, A, A#, B, C2, C#2, D2, D#2
+                        659.26, 698.46, 739.99, 783.99, 830.61, 880.00, 932.33, 987.77,  // E2, F2, F#2, G2, G#2, A2, A#2, B2
+                        1046.50, 1108.73, 1174.66, 1244.51, 1318.51, 1396.91, 1479.98, 1567.98,  // C3, C#3, D3, D#3, E3, F3, F#3, G3
+                        1661.22, 1760.00, 1864.66, 1975.53, 2093.00, 2217.46, 2349.32, 2489.02  // G#3, A3, A#3, B3, C4, C#4, D4, D#4
+                    ];
+
+                    // Criar os botões SVG
                     const buttonsGroup = document.getElementById('buttons');
 
-                    // Criar os botões
                     for (let row = 0; row < rows; row++) {
                         for (let col = 0; col < cols; col++) {
                             const x = startX + col * spacingX + row * 15; // Coordenada X com deslocamento diagonal
@@ -190,7 +198,7 @@
                             const base = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
                             base.setAttribute('cx', x); // Coordenada X
                             base.setAttribute('cy', y); // Coordenada Y
-                            base.setAttribute('r', baseRadius); // Raio da base]
+                            base.setAttribute('r', baseRadius); // Raio da base
                             base.setAttribute('height', baseHeight); // Altura da base
                             base.setAttribute('class', 'btn-base');
                             base.setAttribute('stroke-width', 6); // Aumenta a espessura da lateral da base
@@ -204,36 +212,25 @@
                             top.setAttribute('height', buttonHeight); // Altura do botão
                             top.setAttribute('class', 'btn-top');
                             buttonsGroup.appendChild(top);
+
+                            // Adicionar evento de clique no botão
+                            top.addEventListener('click', () => {
+                                playSound(frequencies[row * cols + col]); // Tocar a frequência associada ao botão
+                            });
                         }
                     }
 
+                    // Função para tocar o som
+                    function playSound(frequency) {
+                        const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                        const oscillator = audioContext.createOscillator(); // Criar oscilador
+                        oscillator.type = 'sine'; // Tipo de onda (senoide)
+                        oscillator.frequency.setValueAtTime(frequency, audioContext.currentTime); // Definir a frequência
+                        oscillator.connect(audioContext.destination); // Conectar o oscilador aos alto-falantes
+                        oscillator.start(); // Começar o som
+                        oscillator.stop(audioContext.currentTime + 1); // Parar o som após 0.5 segundos
+                    }
                 </script>
-            </div>
-        </section>
-        <footer>
-            <h2>Controlador MIDI Virtual</h2>
-        </footer>
-    </div>
-    <!-- Navegação com ícones -->
-
-    <!-- Scripts Principais -->
-    <script src="./js/midi_service.js"></script>
-    <script src="./js/midiview.js"></script>
-    <script>
-        // Controle do Loader
-        window.addEventListener("load", function () {
-            // Oculta o loader
-            const loader = document.getElementById("loader");
-            const mainContent = document.getElementById("main-content");
-
-            if (loader && mainContent) {
-                loader.style.display = "none";
-                mainContent.style.display = "block";
-            } else {
-                console.error("Loader ou Main Content não encontrado!");
-            }
-        });
-    </script>
 </body>
 
 </html>
