@@ -163,7 +163,7 @@
                 </div>
 
                 <script>
-                    // Configurações dos botões
+                    /// Configurações dos botões
                     const rows = 5; // Número de linhas de botões
                     const cols = 8; // Número de colunas de botões
                     const buttonRadius = 8; // Raio dos botões (parte superior)
@@ -177,13 +177,47 @@
                     const startX = 150; // Margem esquerda da tampa
                     const startY = 200; // Margem superior para centralizar na tampa
 
-                    // Frequências das notas para 40 botões (aproximadamente, mas você pode personalizar)
+                    // Frequências das notas para 40 botões no sistema Stradella (baixos fundamentais)
                     const frequencies = [
-                        261.63, 277.18, 293.66, 311.13, 329.63, 349.23, 369.99, 392.00,  // C, C#, D, D#, E, F, F#, G
-                        415.30, 440.00, 466.16, 493.88, 523.25, 554.37, 587.33, 622.25,  // G#, A, A#, B, C2, C#2, D2, D#2
-                        659.26, 698.46, 739.99, 783.99, 830.61, 880.00, 932.33, 987.77,  // E2, F2, F#2, G2, G#2, A2, A#2, B2
-                        1046.50, 1108.73, 1174.66, 1244.51, 1318.51, 1396.91, 1479.98, 1567.98,  // C3, C#3, D3, D#3, E3, F3, F#3, G3
-                        1661.22, 1760.00, 1864.66, 1975.53, 2093.00, 2217.46, 2349.32, 2489.02  // G#3, A3, A#3, B3, C4, C#4, D4, D#4
+                        65.41,  // C (Dó)
+                        73.42,  // D (Ré)
+                        82.41,  // E (Mi)
+                        87.31,  // F (Fá)
+                        98.00,  // G (Sol)
+                        110.00, // A (Lá)
+                        123.47, // B (Si)
+                        130.81, // C (Dó - oitava superior)
+                        146.83, // D (Ré - oitava superior)
+                        164.81, // E (Mi - oitava superior)
+                        174.61, // F (Fá - oitava superior)
+                        196.00, // G (Sol - oitava superior)
+                        220.00, // A (Lá - oitava superior)
+                        246.94, // B (Si - oitava superior)
+                        261.63, // C (Dó - oitava superior)
+                        293.66, // D (Ré - oitava superior)
+                        329.63, // E (Mi - oitava superior)
+                        349.23, // F (Fá - oitava superior)
+                        392.00, // G (Sol - oitava superior)
+                        440.00, // A (Lá - oitava superior),
+                        493.88, // B (Si - oitava superior)
+                        523.25, // C (Dó - oitava superior)
+                        587.33, // D (Ré - oitava superior)
+                        659.25, // E (Mi - oitava superior)
+                        698.46, // F (Fá - oitava superior)
+                        783.99, // G (Sol - oitava superior)
+                        880.00, // A (Lá - oitava superior)
+                        987.77, // B (Si - oitava superior)
+                        1046.50, // C (Dó - oitava superior)
+                        1174.66, // D (Ré - oitava superior)
+                        1318.51, // E (Mi - oitava superior)
+                        1396.91, // F (Fá - oitava superior)
+                        1567.98, // G (Sol - oitava superior)
+                        1760.00, // A (Lá - oitava superior)
+                        1975.53, // B (Si - oitava superior)
+                        2093.00, // C (Dó - oitava superior)
+                        2349.32, // D (Ré - oitava superior)
+                        2637.02, // E (Mi - oitava superior)
+                        2793.83  // F (Fá - oitava superior)
                     ];
 
                     // Criar os botões SVG
@@ -231,10 +265,13 @@
                         oscillator.stop(audioContext.currentTime + 1); // Parar o som após 0.5 segundos
                     }
                 </script>
+
+
+
             </div>
         </section>
         <footer>
-            <h2>Controlador MIDI Virtual</h2>
+            <h1>Controlador MIDI Virtual</h1>
         </footer>
     </div>
     <!-- Navegação com ícones -->

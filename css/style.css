@@ -22,7 +22,7 @@ body {
   flex-direction: column !important;
   justify-content: center !important;
   align-items: center !important;
-  background: linear-gradient(135deg, #3a3a3a, #2d2d2d, #1f1f1f);
+  background: linear-gradient(135deg, #4e4e4e, #3f3f3f, #323232, #252525);
   background-size: 300% 300%;
   animation: gradientAnimation 12s ease infinite;
 }
@@ -682,12 +682,12 @@ Slider navigation
   }
 
   .cd-slider-navigation li:first-of-type a {
-    
+
     background-position: 0 0px;
   }
 
   .cd-slider-navigation li.selected:first-of-type a {
-  
+
     background-position: 0 -60px;
   }
 
