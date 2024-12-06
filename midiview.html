@@ -17,10 +17,10 @@
 </head>
 
 <body>
-    <!-- Loader -->
+    <!-- Loader
     <div id="loader">
         <div class="spinner"></div>
-    </div>
+    </div> -->
 
     <!-- Conteúdo da Página -->
     <div id="main-content" style="display: none;">
@@ -231,6 +231,32 @@
                         oscillator.stop(audioContext.currentTime + 1); // Parar o som após 0.5 segundos
                     }
                 </script>
+            </div>
+        </section>
+        <footer>
+            <h2>Controlador MIDI Virtual</h2>
+        </footer>
+    </div>
+    <!-- Navegação com ícones -->
+
+    <!-- Scripts Principais -->
+    <script src="./js/midi_service.js"></script>
+    <script src="./js/midiview.js"></script>
+    <script>
+        // Controle do Loader
+        window.addEventListener("load", function () {
+            // Oculta o loader
+            const loader = document.getElementById("loader");
+            const mainContent = document.getElementById("main-content");
+
+            if (loader && mainContent) {
+                loader.style.display = "none";
+                mainContent.style.display = "block";
+            } else {
+                console.error("Loader ou Main Content não encontrado!");
+            }
+        });
+    </script>
 </body>
 
 </html>
